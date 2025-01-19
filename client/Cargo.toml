@@ -1,0 +1,46 @@
+[package]
+name = "client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+base64 = "0.22.1"
+clap = "4.5.26"
+async-port-scanner = "0.1.4"
+futures = "0.3.31"
+async-std = "1.13.0"
+simple_crypt = "0.2.3"
+libc = "0.2.169"
+regex = "1.11.1"
+x25519-dalek = "2.0.1"
+rand = "0.8.5"
+sysinfo = "0.33.1"
+
+[target.'cfg(unix)'.dependencies]
+daemonize = "0.5.0"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3.9", features = ["debugapi","memoryapi"] }
+ntapi = "0.4.1"
+
+[target.'cfg(windows)'.lib]
+crate-type = ["cdylib"]
+
+[dependencies.windows]
+version = "0.59.0"
+features = [
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_SystemInformation",
+    "Win32_System_SystemServices",
+    "Win32_System_Memory",
+    "Win32_System_LibraryLoader",
+    "Win32_System_WindowsProgramming",
+    "Win32_System_Threading",
+    "Win32_System_Kernel",
+    "Win32_Security",
+    "Win32_Foundation",
+    "Win32_System_SystemServices",
+    "Win32_UI_WindowsAndMessaging"
+]
